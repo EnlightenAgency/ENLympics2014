@@ -9,9 +9,11 @@ angular.module('enlympics2014App')
 			var dataLines = response.data.split('\n');
 			for (var i = 0; i < dataLines.length; i++) {
 				dataLines[i] = dataLines[i].csvToArray()[0];
+				var color = dataLines[i].pop();
 				var name = dataLines[i].shift();
 				var total = dataLines[i].shift();
 				dataObj[i] = { 
+					'color': color, 
 					'name': name, 
 					'total': total, 
 					'values': dataLines[i] 

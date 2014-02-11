@@ -93,6 +93,22 @@ body {
     }
 }
 
+.header h3 {
+    min-height: 25px;
+    width: 164px;
+    /* background: url(../images/enlympic_logo.png) center center no-repeat; */
+}
+.header h3 span {
+    display: block;
+    width: 1px; 
+    height: 1px;
+    text-indent: -9999px;
+}
+.header h3 img {
+    display: block;
+    margin-top: 16px;
+}
+
 .lead img {
     width: 100%;
     max-width: 560px;
@@ -120,11 +136,29 @@ body {
     width: 100%;
     margin-bottom: 30px;
 }
+.colorswatch {
+    display: block;
+    float: left;
+    margin: 4px 7px 4px 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+.standings .even {
+    background: #e5e5e5;
+}
 .standings th,
 .standings td,
 .scoring td {
     border: 1px solid #e5e5e5;
     padding: 3px;
+    overflow: hidden;
+}
+.standings .name {
+    text-align: left;
+}
+.standings .total {
+    text-align: center;
 }
 .standings th {
     text-align: center;
