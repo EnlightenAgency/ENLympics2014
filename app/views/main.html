@@ -1,0 +1,115 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#/Rules">Rules</a></li>
+    <li><a ng-href="#/Schedule">Schedule</a></li>
+    <li><a ng-href="#/Contact">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">Enlympics2014</h3>
+</div>
+
+<div class="jumbotron">
+  <p class="lead">
+    <img src="images/enlympic_rings.png" alt="enlympic_rings">
+  </p>
+  <h1>2014 Winter Enlympics</h1>
+</div>
+
+<div class="row marketing">
+  <h3>Standings</h3>
+  <table class="standings">
+    <thead>
+      <tr>
+        <th colspan="17">&nbsp;</th>
+        <th colspan="6">Pentathalon</th>
+      </tr>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Total</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>TF</th>
+        <th>PP</th>
+        <th>P Total</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>P3</th>
+        <th>P4</th>
+        <th>P5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="cdata in csvData | orderBy:'cdata.total'">
+        <td><strong>{{cdata.name}}</strong></td>
+        <td><strong>{{cdata.total}}</strong></td>
+        <td ng-repeat="score in cdata.values track by $index">{{score}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-1">&nbsp;</div>
+    <table class="scoring col-md-3">
+      <tr>
+        <th colspan="2"><h4>Event Scoring</h4></th>
+      </tr>
+      <tr>
+        <td>1st</td><td>150</td>
+      </tr>
+      <tr>
+        <td>2nd</td><td>125</td>
+      </tr>
+      <tr>
+        <td>3rd</td><td>100</td>
+      </tr>
+      <tr>
+        <td>4-6</td><td>50</td>
+      </tr>
+      <tr>
+        <td>No show</td><td>0</td>
+      </tr>
+      <tr>
+        <td>DQ</td><td>0</td>
+      </tr>
+    </table>
+    <div class="col-md-1">&nbsp;</div>
+    <table class="scoring col-md-3">
+      <tr>
+        <th colspan="2"><h4>Pent Scoring</h4></th>
+      </tr>
+      <tr>
+        <td>1st</td><td>30</td>
+      </tr>
+      <tr>
+        <td>2nd</td><td>25</td>
+      </tr>
+      <tr>
+        <td>3rd</td><td>20</td>
+      </tr>
+      <tr>
+        <td>4-6</td><td>10</td>
+      </tr>
+      <tr>
+        <td>No show</td><td>0</td>
+      </tr>
+      <tr>
+        <td>DQ</td><td>0</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="footer">
+  <p>♥ from the Enlighten Olympic Committee</p>
+</div>
