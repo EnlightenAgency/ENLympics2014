@@ -33,17 +33,18 @@ String.prototype.csvToArray = function (o) {
         'head': false,
         'trim': false
     }
+    var a, c, i, r, f, p, q;
     if (o) {
-        for (var i in od) {
+        for (i in od) {
             if (!o[i]) o[i] = od[i];
         }
     } else {
         o = od;
     }
-    var a = [
+    a = [
         ['']
     ];
-    for (var r = f = p = q = 0; p < this.length; p++) {
+    for (r = f = p = q = 0; p < this.length; p++) {
         switch (c = this.charAt(p)) {
         case o.quot:
             if (q && this.charAt(p + 1) == o.quot) {
