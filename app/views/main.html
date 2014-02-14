@@ -60,19 +60,21 @@
   <div class="row">
     <table class="medals col-md-4">
       <tr>
-        <th colspan="4"><h4>Medal Count</h4></th>
+        <th colspan="5"><h4>Medal Count</h4></th>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td><img src="images/gold_medal.png" alt="gold medal" /></td>
         <td><img src="images/silver_medal.png" alt="silver medal" /></td>
         <td><img src="images/bronze_medal.png" alt="bronze medal" /></td>
+        <td><strong>Total</strong></td>
       </tr>
-      <tr ng-repeat="cdata in csvData | orderBy:'cdata.total'" ng-class="{even: $even}">
+      <tr ng-repeat="cdata in csvData | orderBy:'totalMedals(cdata)'" ng-class="{even: $even}">
         <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
         <td>{{medalCounts(cdata).gold}}</td>
         <td>{{medalCounts(cdata).silver}}</td>
         <td>{{medalCounts(cdata).bronze}}</td>
+        <td><strong>{{totalMedals(cdata)}}</strong></td>
       </tr>
     </table>
     <div class="col-md-1">&nbsp;</div>
@@ -80,19 +82,19 @@
       <tr>
         <th colspan="2"><h4>Event Scoring</h4></th>
       </tr>
-      <tr>
+      <tr class="even">
         <td>1st</td><td>150</td>
       </tr>
       <tr>
         <td>2nd</td><td>125</td>
       </tr>
-      <tr>
+      <tr class="even">
         <td>3rd</td><td>100</td>
       </tr>
       <tr>
         <td>4-6</td><td>50</td>
       </tr>
-      <tr>
+      <tr class="even">
         <td>No show</td><td>0</td>
       </tr>
       <tr>
@@ -104,19 +106,19 @@
       <tr>
         <th colspan="2"><h4>Pent Scoring</h4></th>
       </tr>
-      <tr>
+      <tr class="even">
         <td>1st</td><td>30</td>
       </tr>
       <tr>
         <td>2nd</td><td>25</td>
       </tr>
-      <tr>
+      <tr class="even">
         <td>3rd</td><td>20</td>
       </tr>
       <tr>
         <td>4-6</td><td>10</td>
       </tr>
-      <tr>
+      <tr class="even">
         <td>No show</td><td>0</td>
       </tr>
       <tr>
