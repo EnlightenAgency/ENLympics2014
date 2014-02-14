@@ -50,7 +50,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="cdata in csvData | orderBy:'cdata.total'" ng-class="{even: $even}">
+      <tr ng-repeat="cdata in csvData | orderBy:['cdata.total', 'totalMedals(cdata)']" ng-class="{even: $even}">
         <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
         <td class="total"><strong>{{cdata.total}}</strong></td>
         <td ng-repeat="score in cdata.values track by $index" class="values">{{score}}</td>
@@ -69,7 +69,7 @@
         <td><img src="images/bronze_medal.png" alt="bronze medal" /></td>
         <td><strong>Total</strong></td>
       </tr>
-      <tr ng-repeat="cdata in csvData | orderBy:'totalMedals(cdata)'" ng-class="{even: $even}">
+      <tr ng-repeat="cdata in csvData | orderBy:['totalMedals(cdata)', 'cdata.total']" ng-class="{even: $even}">
         <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
         <td>{{medalCounts(cdata).gold}}</td>
         <td>{{medalCounts(cdata).silver}}</td>
