@@ -15,7 +15,7 @@ angular.module('enlympics2014App')
 				dataObj[i] = { 
 					'color': color, 
 					'name': name, 
-					'total': total*1, 
+					'total': total.replace(',','')*1, 
 					'values': dataLines[i] 
 				};
 			}
