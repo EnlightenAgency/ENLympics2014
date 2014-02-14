@@ -53,7 +53,7 @@
       <tr ng-repeat="cdata in csvData | orderBy:['cdata.total', 'totalMedals(cdata)']" ng-class="{even: $even}">
         <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
         <td class="total"><strong>{{cdata.total}}</strong></td>
-        <td ng-repeat="score in cdata.values track by $index" class="values">{{score}}</td>
+        <td ng-repeat="score in cdata.values track by $index" class="values">{{score*1|| '-'}}</td>
       </tr>
     </tbody>
   </table>
