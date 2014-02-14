@@ -149,12 +149,17 @@ body {
 }
 .standings th,
 .standings td,
-.scoring td {
+.scoring td,
+.medals td {
     border: 1px solid #e5e5e5;
     padding: 3px;
     overflow: hidden;
 }
-.standings .name {
+.medals td {
+    text-align: center;
+}
+.standings .name,
+.medals .name {
     text-align: left;
 }
 .standings .total {
