@@ -50,10 +50,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="cdata in csvData | orderBy:['cdata.total', 'totalMedals(cdata)']" ng-class="{even: $even}">
-        <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
-        <td class="total"><strong>{{cdata.total}}</strong></td>
-        <td ng-repeat="score in cdata.values track by $index" class="values">{{score*1|| '-'}}</td>
+      <tr ng-repeat="team in teams | orderBy:['-total', '-totalMedals(team)']" ng-class="{even: $even}">
+        <td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
+        <td class="total"><strong>{{team.total}}</strong></td>
+        <!-- <td ng-repeat="score in team.values track by $index" class="values">{{score*1|| '-'}}</td> -->
+        <td ng-repeat="score in team.values track by $index" class="values">
+          <img src="images/gold_medal.png" alt="gold medal" ng-if="score == 150 && $index < 15" />
+          <img src="images/silver_medal.png" alt="gold medal" ng-if="score == 125 && $index < 15" />
+          <img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 100 && $index < 15" />
+          <span ng-if="score < 100 && $index < 15 && score != 0">P</span>
+          <img src="images/gold_medal.png" alt="gold medal" ng-if="score == 30 && $index > 15" />
+          <img src="images/silver_medal.png" alt="gold medal" ng-if="score == 25 && $index > 15" />
+          <img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 20 && $index > 15" />
+          <span ng-if="score < 20 && $index > 15 && score != 0">P</span>
+          <span ng-if="score == 0">&ndash;</span>
+          <img src="images/gold_medal.png" alt="gold medal" ng-if="pentMedal(team) == 0 && $index == 15" />
+          <img src="images/silver_medal.png" alt="gold medal" ng-if="pentMedal(team) == 1 && $index == 15" />
+          <img src="images/bronze_medal.png" alt="gold medal" ng-if="pentMedal(team) == 2 && $index == 15" />
+          <span ng-if="pentMedal(team) == -1 && $index == 15">&ndash;</span>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -69,12 +84,12 @@
         <td><img src="images/bronze_medal.png" alt="bronze medal" /></td>
         <td><strong>Total</strong></td>
       </tr>
-      <tr ng-repeat="cdata in csvData | orderBy:['totalMedals(cdata)', 'cdata.total']" ng-class="{even: $even}">
-        <td class="name"><span class="colorswatch" style="background: #{{cdata.color}}"></span><strong>{{cdata.name}}</strong></td>
-        <td>{{medalCounts(cdata).gold}}</td>
-        <td>{{medalCounts(cdata).silver}}</td>
-        <td>{{medalCounts(cdata).bronze}}</td>
-        <td><strong>{{totalMedals(cdata)}}</strong></td>
+      <tr ng-repeat="team in teams | orderBy:['-totalMedals(team)', '-total']" ng-class="{even: $even}">
+        <td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
+        <td>{{medalCounts(team).gold}}</td>
+        <td>{{medalCounts(team).silver}}</td>
+        <td>{{medalCounts(team).bronze}}</td>
+        <td><strong>{{totalMedals(team)}}</strong></td>
       </tr>
     </table>
     <div class="col-md-1">&nbsp;</div>
@@ -83,16 +98,16 @@
         <th colspan="2"><h4>Event Scoring</h4></th>
       </tr>
       <tr class="even">
-        <td>1st</td><td>150</td>
+        <td>1st&nbsp;&nbsp;&nbsp;<img src="images/gold_medal.png" alt="gold medal" /></td><td>150</td>
       </tr>
       <tr>
-        <td>2nd</td><td>125</td>
+        <td>2nd&nbsp;&nbsp;&nbsp;<img src="images/silver_medal.png" alt="silver medal" /></td><td>125</td>
       </tr>
       <tr class="even">
-        <td>3rd</td><td>100</td>
+        <td>3rd&nbsp;&nbsp;&nbsp;<img src="images/bronze_medal.png" alt="bronze medal" /></td><td>100</td>
       </tr>
       <tr>
-        <td>4-6</td><td>50</td>
+        <td>4-6&nbsp;&nbsp;&nbsp;(P)</td><td>50</td>
       </tr>
       <tr class="even">
         <td>No show</td><td>0</td>
@@ -107,16 +122,16 @@
         <th colspan="2"><h4>Pent Scoring</h4></th>
       </tr>
       <tr class="even">
-        <td>1st</td><td>30</td>
+        <td>1st&nbsp;&nbsp;&nbsp;<img src="images/gold_medal.png" alt="gold medal" /></td><td>30</td>
       </tr>
       <tr>
-        <td>2nd</td><td>25</td>
+        <td>2nd&nbsp;&nbsp;&nbsp;<img src="images/silver_medal.png" alt="silver medal" /></td><td>25</td>
       </tr>
       <tr class="even">
-        <td>3rd</td><td>20</td>
+        <td>3rd&nbsp;&nbsp;&nbsp;<img src="images/bronze_medal.png" alt="bronze medal" /></td><td>20</td>
       </tr>
       <tr>
-        <td>4-6</td><td>10</td>
+        <td>4-6&nbsp;&nbsp;&nbsp;(P)</td><td>10</td>
       </tr>
       <tr class="even">
         <td>No show</td><td>0</td>

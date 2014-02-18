@@ -5,7 +5,7 @@ angular.module('enlympics2014App')
 		var url = "https://docs.google.com/spreadsheet/pub?key=0AjlCsM_470MFdEZ6QlZVTkd4UlBMd2RSbjgyckcydVE&single=true&gid=0&output=csv";
 		var csvParse = $http.get(url).then(function(response) {
 			console.log(response.data);
-			var dataObj = {};
+			var dataObj = [];
 			var dataLines = response.data.split('\n');
 			for (var i = 0; i < dataLines.length; i++) {
 				dataLines[i] = dataLines[i].csvToArray()[0];
