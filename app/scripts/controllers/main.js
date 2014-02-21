@@ -9,7 +9,8 @@ angular.module('enlympics2014App')
 
         for (var d in data) {
           console.log(data[d].values);
-          if (!!data[d].values[20]) {
+          if (!data[d].values[20]) {
+            console.log(data[d].values[20]);
             pentFinished = false; return pentIndex;
           }
           teamPentTotals[dataIndex] = 0;
@@ -21,6 +22,7 @@ angular.module('enlympics2014App')
           dataIndex++;
         }
 
+        console.log(pentFinished);
         if (pentFinished) {
           pentathalon = 0;  
           for (var j = 16; j < team.values.length; j++) {
@@ -29,9 +31,9 @@ angular.module('enlympics2014App')
           pentIndex = teamPentTotals.indexOf(pentathalon);
 
           console.log("pentIndex " + pentIndex);
-
-          return pentIndex;
         }
+
+        return pentIndex;
     };
     Csvfromgdoc.getDataAsync().then(function(data) {
       var getMedals = function(team) {

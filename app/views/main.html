@@ -68,6 +68,7 @@
           <img src="images/silver_medal.png" alt="gold medal" ng-if="pentMedal(team) == 1 && $index == 15" />
           <img src="images/bronze_medal.png" alt="gold medal" ng-if="pentMedal(team) == 2 && $index == 15" />
           <span ng-if="pentMedal(team) == -1 && $index == 15">&ndash;</span>
+          <span ng-if="pentMedal(team) != -1 && pentMedal(team) > 2 && $index == 15">P</span>
         </td>
       </tr>
     </tbody>
