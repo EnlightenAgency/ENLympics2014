@@ -10,7 +10,7 @@
  *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -25,68 +25,72 @@
  * http://code.google.com/p/csv-to-array/
  *
  */
-String.prototype.csvToArray = function (o) {
-    var od = {
-        'fSep': ',',
-        'rSep': '\r\n',
-        'quot': '"',
-        'head': false,
-        'trim': false
-    }
-    var a, c, i, r, f, p, q;
-    if (o) {
-        for (i in od) {
-            if (!o[i]) o[i] = od[i];
-        }
-    } else {
-        o = od;
-    }
-    a = [
-        ['']
-    ];
-    for (r = f = p = q = 0; p < this.length; p++) {
-        switch (c = this.charAt(p)) {
-        case o.quot:
-            if (q && this.charAt(p + 1) == o.quot) {
-                a[r][f] += o.quot;
-                ++p;
-            } else {
-                q ^= 1;
-            }
-            break;
-        case o.fSep:
-            if (!q) {
-                if (o.trim) {
-                    a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-                }
-                a[r][++f] = '';
-            } else {
-                a[r][f] += c;
-            }
-            break;
-        case o.rSep.charAt(0):
-            if (!q && (!o.rSep.charAt(1) || (o.rSep.charAt(1) && o.rSep.charAt(1) == this.charAt(p + 1)))) {
-                if (o.trim) {
-                    a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-                }
-                a[++r] = [''];
-                a[r][f = 0] = '';
-                if (o.rSep.charAt(1)) {
-                    ++p;
-                }
-            } else {
-                a[r][f] += c;
-            }
-            break;
-        default:
-            a[r][f] += c;
-        }
-    }
-    if (o.head) {
-        a.shift()
-    }
-    if (a[a.length - 1].length < a[0].length) {
-        a.pop()
-    }
-    return a;
-}
+String.prototype.csvToArray = function(o) {
+	'use strict';
+	var od = {
+		'fSep': ',',
+		'rSep': '\r\n',
+		'quot': '"',
+		'head': false,
+		'trim': false
+	};
+	var a, c, i, r, f, p, q;
+	if (o) {
+		for (i in od) {
+			if (!o[i]) {
+				o[i] = od[i];
+			}
+		}
+	} else {
+		o = od;
+	}
+	a = [
+		['']
+	];
+	for (r = f = p = q = 0; p < this.length; p++) {
+		c = this.charAt(p);
+		switch (c) {
+			case o.quot:
+				if (q && this.charAt(p + 1) === o.quot) {
+					a[r][f] += o.quot;
+					++p;
+				} else {
+					q ^= 1;
+				}
+				break;
+			case o.fSep:
+				if (!q) {
+					if (o.trim) {
+						a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+					}
+					a[r][++f] = '';
+				} else {
+					a[r][f] += c;
+				}
+				break;
+			case o.rSep.charAt(0):
+				if (!q && (!o.rSep.charAt(1) || (o.rSep.charAt(1) && o.rSep.charAt(1) === this.charAt(p + 1)))) {
+					if (o.trim) {
+						a[r][f] = a[r][f].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+					}
+					a[++r] = [''];
+					a[r][f = 0] = '';
+					if (o.rSep.charAt(1)) {
+						++p;
+					}
+				} else {
+					a[r][f] += c;
+				}
+				break;
+			default:
+				a[r][f] += c;
+		}
+	}
+	if (o.head) {
+		a.shift();
+	}
+	if (a[a.length - 1].length < a[0].length) {
+		a.pop();
+	}
+	return a;
+};

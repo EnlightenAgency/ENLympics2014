@@ -1,150 +1,150 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#/Rules">Rules</a></li>
-    <li><a ng-href="#/Schedule">Schedule</a></li>
-    <li><a ng-href="#/Contact">Contact</a></li>
-  </ul>
-  <h3><span class="text-muted">Enlympics2014</span><img src="images/enlympic_logo.png" alt="logo" /></h3>
+	<ul class="nav nav-pills pull-right">
+		<li class="active"><a ng-href="#">Home</a></li>
+		<li><a ng-href="#/Rules">Rules</a></li>
+		<li><a ng-href="#/Schedule">Schedule</a></li>
+		<li><a ng-href="#/Contact">Contact</a></li>
+	</ul>
+	<h3><span class="text-muted">Enlympics2014</span><img src="images/enlympic_logo.png" alt="logo" /></h3>
 </div>
 
 <div class="jumbotron">
-  <p class="lead">
-    <img src="images/enlympic_rings.png" alt="enlympic_rings">
-  </p>
-  <h1>2014 Winter Enlympics</h1>
+	<p class="lead">
+		<img src="images/enlympic_rings.png" alt="enlympic_rings">
+	</p>
+	<h1>2014 Winter Enlympics</h1>
 </div>
 
 <div class="row marketing">
-  <h3>Standings</h3>
-  <table class="standings">
-    <thead>
-      <tr>
-        <th colspan="17">&nbsp;</th>
-        <th colspan="6">Pentathalon</th>
-      </tr>
-      <tr>
-        <th>&nbsp;</th>
-        <th>Total</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
-        <th>8</th>
-        <th>9</th>
-        <th>10</th>
-        <th>11</th>
-        <th>12</th>
-        <th>13</th>
-        <th>TF</th>
-        <th>PP</th>
-        <th>P Total</th>
-        <th>P1</th>
-        <th>P2</th>
-        <th>P3</th>
-        <th>P4</th>
-        <th>P5</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="team in teams | orderBy:['-total', '-totalMedals(team)']" ng-class="{even: $even}">
-        <td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
-        <td class="total"><strong>{{team.total}}</strong></td>
-        <!-- <td ng-repeat="score in team.values track by $index" class="values">{{score*1|| '-'}}</td> -->
-        <td ng-repeat="score in team.values track by $index" class="values">
-          <img src="images/gold_medal.png" alt="gold medal" ng-if="score == 150 && $index < 15" />
-          <img src="images/silver_medal.png" alt="gold medal" ng-if="score == 125 && $index < 15" />
-          <img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 100 && $index < 15" />
-          <span ng-if="score < 100 && $index < 15 && score != 0">P</span>
-          <img src="images/gold_medal.png" alt="gold medal" ng-if="score == 30 && $index > 15" />
-          <img src="images/silver_medal.png" alt="gold medal" ng-if="score == 25 && $index > 15" />
-          <img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 20 && $index > 15" />
-          <span ng-if="score < 20 && $index > 15 && score != 0">P</span>
-          <span ng-if="score == 0">&ndash;</span>
-          <img src="images/gold_medal.png" alt="gold medal" ng-if="pentMedal(team) == 0 && $index == 15" />
-          <img src="images/silver_medal.png" alt="gold medal" ng-if="pentMedal(team) == 1 && $index == 15" />
-          <img src="images/bronze_medal.png" alt="gold medal" ng-if="pentMedal(team) == 2 && $index == 15" />
-          <span ng-if="pentMedal(team) == -1 && $index == 15">&ndash;</span>
-          <span ng-if="pentMedal(team) != -1 && pentMedal(team) > 2 && $index == 15">P</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row">
-    <table class="medals col-md-4">
-      <tr>
-        <th colspan="5"><h4>Medal Count</h4></th>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td><img src="images/gold_medal.png" alt="gold medal" /></td>
-        <td><img src="images/silver_medal.png" alt="silver medal" /></td>
-        <td><img src="images/bronze_medal.png" alt="bronze medal" /></td>
-        <td><strong>Total</strong></td>
-      </tr>
-      <tr ng-repeat="team in teams | orderBy:['-totalMedals(team)', '-total']" ng-class="{even: $even}">
-        <td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
-        <td>{{medalCounts(team).gold}}</td>
-        <td>{{medalCounts(team).silver}}</td>
-        <td>{{medalCounts(team).bronze}}</td>
-        <td><strong>{{totalMedals(team)}}</strong></td>
-      </tr>
-    </table>
-    <div class="col-md-1">&nbsp;</div>
-    <table class="scoring col-md-3">
-      <tr>
-        <th colspan="3"><h4>Event Scoring</h4></th>
-      </tr>
-      <tr class="even">
-        <td>1st</td><td>150</td><td align="center"><img src="images/gold_medal.png" alt="gold medal" /></td>
-      </tr>
-      <tr>
-        <td>2nd</td><td>125</td><td align="center"><img src="images/silver_medal.png" alt="silver medal" /></td>
-      </tr>
-      <tr class="even">
-        <td>3rd</td><td>100</td><td align="center"><img src="images/bronze_medal.png" alt="bronze medal" /></td>
-      </tr>
-      <tr>
-        <td>4-6</td><td>50</td><td align="center">(P)</td>
-      </tr>
-      <tr class="even">
-        <td>No show</td><td>0</td><td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>DQ</td><td>0</td><td>&nbsp;</td>
-      </tr>
-    </table>
-    <div class="col-md-1">&nbsp;</div>
-    <table class="scoring col-md-3">
-      <tr>
-        <th colspan="3"><h4>Pent Scoring</h4></th>
-      </tr>
-      <tr class="even">
-        <td>1st</td><td>30</td><td align="center"><img src="images/gold_medal.png" alt="gold medal" /></td>
-      </tr>
-      <tr>
-        <td>2nd</td><td>25</td><td align="center"><img src="images/silver_medal.png" alt="silver medal" /></td>
-      </tr>
-      <tr class="even">
-        <td>3rd</td><td>20</td><td align="center"><img src="images/bronze_medal.png" alt="bronze medal" /></td>
-      </tr>
-      <tr>
-        <td>4-6</td><td>10</td><td align="center">(P)</td>
-      </tr>
-      <tr class="even">
-        <td>No show</td><td>0</td><td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>DQ</td><td>0</td><td>&nbsp;</td>
-      </tr>
-    </table>
-  </div>
+	<h3>Standings</h3>
+	<table class="standings">
+		<thead>
+			<tr>
+				<th colspan="17">&nbsp;</th>
+				<th colspan="6">Pentathalon</th>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Total</th>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+				<th>4</th>
+				<th>5</th>
+				<th>6</th>
+				<th>7</th>
+				<th>8</th>
+				<th>9</th>
+				<th>10</th>
+				<th>11</th>
+				<th>12</th>
+				<th>13</th>
+				<th>TF</th>
+				<th>PP</th>
+				<th>P Total</th>
+				<th>P1</th>
+				<th>P2</th>
+				<th>P3</th>
+				<th>P4</th>
+				<th>P5</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="team in teams | orderBy:['-total', '-totalMedals(team)']" ng-class="{even: $even}">
+				<td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
+				<td class="total"><strong>{{team.total}}</strong></td>
+				<!-- <td ng-repeat="score in team.values track by $index" class="values">{{score*1|| '-'}}</td> -->
+				<td ng-repeat="score in team.values track by $index" class="values">
+					<img src="images/gold_medal.png" alt="gold medal" ng-if="score == 150 && $index < 15" />
+					<img src="images/silver_medal.png" alt="gold medal" ng-if="score == 125 && $index < 15" />
+					<img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 100 && $index < 15" />
+					<span ng-if="score < 100 && $index < 15 && score != 0">P</span>
+					<img src="images/gold_medal.png" alt="gold medal" ng-if="score == 30 && $index > 15" />
+					<img src="images/silver_medal.png" alt="gold medal" ng-if="score == 25 && $index > 15" />
+					<img src="images/bronze_medal.png" alt="gold medal" ng-if="score == 20 && $index > 15" />
+					<span ng-if="score < 20 && $index > 15 && score != 0">P</span>
+					<span ng-if="score == 0">&ndash;</span>
+					<img src="images/gold_medal.png" alt="gold medal" ng-if="pentMedal(team) == 0 && $index == 15" />
+					<img src="images/silver_medal.png" alt="gold medal" ng-if="pentMedal(team) == 1 && $index == 15" />
+					<img src="images/bronze_medal.png" alt="gold medal" ng-if="pentMedal(team) == 2 && $index == 15" />
+					<span ng-if="pentMedal(team) == -1 && $index == 15">&ndash;</span>
+					<span ng-if="pentMedal(team) != -1 && pentMedal(team) > 2 && $index == 15">P</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<table class="medals col-md-4">
+			<tr>
+				<th colspan="5"><h4>Medal Count</h4></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><img src="images/gold_medal.png" alt="gold medal" /></td>
+				<td><img src="images/silver_medal.png" alt="silver medal" /></td>
+				<td><img src="images/bronze_medal.png" alt="bronze medal" /></td>
+				<td><strong>Total</strong></td>
+			</tr>
+			<tr ng-repeat="team in teams | orderBy:['-totalMedals(team)', '-total']" ng-class="{even: $even}">
+				<td class="name"><span class="colorswatch" style="background: #{{team.color}}"></span><strong>{{team.name}}</strong></td>
+				<td>{{medalCounts(team).gold}}</td>
+				<td>{{medalCounts(team).silver}}</td>
+				<td>{{medalCounts(team).bronze}}</td>
+				<td><strong>{{totalMedals(team)}}</strong></td>
+			</tr>
+		</table>
+		<div class="col-md-1">&nbsp;</div>
+		<table class="scoring col-md-3">
+			<tr>
+				<th colspan="3"><h4>Event Scoring</h4></th>
+			</tr>
+			<tr class="even">
+				<td>1st</td><td>150</td><td align="center"><img src="images/gold_medal.png" alt="gold medal" /></td>
+			</tr>
+			<tr>
+				<td>2nd</td><td>125</td><td align="center"><img src="images/silver_medal.png" alt="silver medal" /></td>
+			</tr>
+			<tr class="even">
+				<td>3rd</td><td>100</td><td align="center"><img src="images/bronze_medal.png" alt="bronze medal" /></td>
+			</tr>
+			<tr>
+				<td>4-6</td><td>50</td><td align="center">(P)</td>
+			</tr>
+			<tr class="even">
+				<td>No show</td><td>0</td><td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>DQ</td><td>0</td><td>&nbsp;</td>
+			</tr>
+		</table>
+		<div class="col-md-1">&nbsp;</div>
+		<table class="scoring col-md-3">
+			<tr>
+				<th colspan="3"><h4>Pent Scoring</h4></th>
+			</tr>
+			<tr class="even">
+				<td>1st</td><td>30</td><td align="center"><img src="images/gold_medal.png" alt="gold medal" /></td>
+			</tr>
+			<tr>
+				<td>2nd</td><td>25</td><td align="center"><img src="images/silver_medal.png" alt="silver medal" /></td>
+			</tr>
+			<tr class="even">
+				<td>3rd</td><td>20</td><td align="center"><img src="images/bronze_medal.png" alt="bronze medal" /></td>
+			</tr>
+			<tr>
+				<td>4-6</td><td>10</td><td align="center">(P)</td>
+			</tr>
+			<tr class="even">
+				<td>No show</td><td>0</td><td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>DQ</td><td>0</td><td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 
 <div class="footer">
-  <p>♥ from the Enlighten Olympic Committee</p>
+	<p>♥ from the Enlighten Olympic Committee</p>
 </div>
